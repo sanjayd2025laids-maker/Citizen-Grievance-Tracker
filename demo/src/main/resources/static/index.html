@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grievance Tracker</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">CG</div>
+          <div>
+            <p class="eyebrow">Civic Services</p>
+            <h1>Citizen Grievance Tracker</h1>
+          </div>
+        </div>
+        <span class="status-pill">Operations Dashboard</span>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live case management</p>
+          <h2>Track issues, assign teams, and resolve faster.</h2>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span>Departments</span>
+            <strong id="deptStat">0</strong>
+          </div>
+          <div class="stat-card accent-blue">
+            <span>Categories</span>
+            <strong id="categoryStat">0</strong>
+          </div>
+          <div class="stat-card accent-green">
+            <span>Grievances</span>
+            <strong id="grievanceStat">0</strong>
+          </div>
+          <div class="stat-card accent-gold">
+            <span>Escalations</span>
+            <strong id="escalationStat">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <main class="grid">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Departments</h2>
+            <span class="tag">Setup</span>
+          </div>
+          <form id="departmentForm">
+            <input id="departmentName" type="text" placeholder="Department name" required />
+            <button type="submit">Create Department</button>
+          </form>
+          <button id="loadDepartments" class="secondary">Load Departments</button>
+          <pre id="departmentsOutput" class="output"></pre>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Categories</h2>
+            <span class="tag">Standards</span>
+          </div>
+          <form id="categoryForm">
+            <input id="categoryName" type="text" placeholder="Category name" required />
+            <input id="slaDays" type="number" min="1" placeholder="SLA days" required />
+            <input id="departmentId" type="number" min="1" placeholder="Department ID" required />
+            <button type="submit">Create Category</button>
+          </form>
+          <button id="loadCategories" class="secondary">Load Categories</button>
+          <pre id="categoriesOutput" class="output"></pre>
+        </section>
+
+        <section class="panel wide">
+          <div class="panel-head">
+            <h2>Grievances</h2>
+            <span class="tag">Cases</span>
+          </div>
+          <form id="grievanceForm">
+            <input id="grievanceCategoryId" type="number" min="1" placeholder="Category ID" required />
+            <input id="grievanceLocation" type="text" placeholder="Location" required />
+            <textarea id="grievanceDescription" rows="3" placeholder="Complaint description" required></textarea>
+            <button type="submit">Create Grievance</button>
+          </form>
+          <div class="row">
+            <button id="loadGrievances" class="secondary">Load Grievances</button>
+            <button id="loadEscalations" class="secondary">Load Escalations</button>
+          </div>
+          <pre id="grievanceOutput" class="output"></pre>
+        </section>
+
+        <section class="panel wide action-panel">
+          <div class="panel-head">
+            <h2>Workflow Actions</h2>
+            <span class="tag">Manage</span>
+          </div>
+
+          <div class="workflow-grid">
+            <div>
+              <h3>Update Grievance Status</h3>
+              <form id="statusForm">
+                <input id="statusId" type="number" min="1" placeholder="Grievance ID" required />
+                <select id="statusValue">
+                  <option value="OPEN">OPEN</option>
+                  <option value="ASSIGNED">ASSIGNED</option>
+                  <option value="IN_PROGRESS">IN_PROGRESS</option>
+                  <option value="RESOLVED">RESOLVED</option>
+                  <option value="CLOSED">CLOSED</option>
+                  <option value="ESCALATED">ESCALATED</option>
+                </select>
+                <button type="submit">Update Status</button>
+              </form>
+            </div>
+
+            <div>
+              <h3>Rate Grievance</h3>
+              <form id="ratingForm">
+                <input id="ratingId" type="number" min="1" placeholder="Grievance ID" required />
+                <input id="ratingValue" type="number" min="1" max="5" placeholder="Rating 1-5" required />
+                <input id="ratingComment" type="text" placeholder="Comment" />
+                <button type="submit">Submit Rating</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
